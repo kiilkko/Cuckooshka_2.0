@@ -8,12 +8,8 @@ namespace Cuckooshka_2._0
 {
     public class DB_manager
     {
-        
-
         public DB_manager()
-        {
-           
-        }
+        { }
 
         public int CheckNotesAtDay (int dayNumber)
         {
@@ -57,13 +53,12 @@ namespace Cuckooshka_2._0
         {
             using (CuckooEntities ce = new CuckooEntities())
             {
-                List<Note_>[] allNotes = new List<Note_>[7]; //поставить потом здесь семь!!!
+                List<Note_>[] allNotes = new List<Note_>[7]; 
                 for(int i=0; i<allNotes.Length;i++)
                 {
                     allNotes[i] = new List<Note_>();
                 }
 
-                //поставить потом здесь семь!!!
                 for (int i=0; i<7; i++)
                 {
                     var dayNotes = ce.Note_.Where(e => e.Id.StartsWith(i.ToString()))
