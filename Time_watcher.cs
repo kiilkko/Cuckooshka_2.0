@@ -13,11 +13,13 @@ namespace Cuckooshka_2._0
     {
         //экземпляр класса, отвечающего за связь с БД
         private DB_manager dbManager_;
+        private Dictionary<string, int> _dayNames;
 
         public Time_watcher()
         {
             dbManager_ = new DB_manager();
             Timer timer = new Timer();
+            _dayNames = new Dictionary<string, int>() { { "Monday", 0 }, { "Tuesday", 1 }, { "Wednesday", 2 }, { "Thursday", 3 }, { "Friday", 4 }, { "Sunday", 5 }, { "Saturday", 6 } };
         }
         
         //метод получает из БД выборку записей на текущую дату, перебирает, и если время записи совпадает с текущим, выдает сообщение
@@ -55,42 +57,12 @@ namespace Cuckooshka_2._0
             return result;
         }
 
-        public int DayNumberNow()
+       public int DayNumberNow()
         {
             string day = DateTime.Now.DayOfWeek.ToString();
-            int dayNumber = 0;
-
-            if (day.Equals("Monday"))
-            {
-                dayNumber = 0;
-            }
-            else if (day.Equals("Tuesday"))
-            {
-                dayNumber = 1;
-            }
-            else if (day.Equals("Wednesday"))
-            {
-                dayNumber = 2;
-            }
-            else if (day.Equals("Thursday"))
-            {
-                dayNumber = 3;
-            }
-            else if (day.Equals("Friday"))
-            {
-                dayNumber = 4;
-            }
-            else if (day.Equals("Sunday"))
-            {
-                dayNumber = 5;
-            }
-            else if (day.Equals("Saturday"))
-            {
-                dayNumber = 6;
-            }
-
+            
+            int dayNumber = _dayNames[day];
             return dayNumber;
-
         }
 
     }
